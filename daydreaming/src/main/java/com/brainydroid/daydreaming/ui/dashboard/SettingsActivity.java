@@ -49,6 +49,7 @@ public class SettingsActivity extends RoboFragmentActivity {
     public static String NOTIF_SOUND = "notification_sound_key";
 
     @InjectView(R.id.appsettings_erase_data_layout)  LinearLayout eraseDataLayout;
+    @InjectView(R.id.appsettings_download_data_layout)  LinearLayout downloadDataLayout;
 
     @InjectView(R.id.settings_time_text_from_layout)   LinearLayout fromLayout;
     @InjectView(R.id.settings_time_text_until_layout) LinearLayout untilLayout;
@@ -84,7 +85,6 @@ public class SettingsActivity extends RoboFragmentActivity {
         addListenerOnButton();
         loadCheckBoxPreferences();
     }
-
 
     @Override
     public void onStart() {
@@ -124,6 +124,7 @@ public class SettingsActivity extends RoboFragmentActivity {
                 // set title
                 alertDialogBuilder.setTitle("Erase Data");
 
+                // TODO: explain this will quit the experiment
                 // set dialog message
                 alertDialogBuilder
                         .setMessage(getString(R.string.appsettings_warning_data_erase))
@@ -144,6 +145,17 @@ public class SettingsActivity extends RoboFragmentActivity {
                 // show it
                 alertDialog.show();
                 FontUtils.setRobotoToAlertDialog(alertDialog,SettingsActivity.this);
+            }
+        });
+
+        downloadDataLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: create download progress bar
+
+                // TODO: FontUtils.setRobotoToAlertDialog(alertDialog,SettingsActivity.this);
+
+                downloadData();
             }
         });
 
@@ -271,7 +283,11 @@ public class SettingsActivity extends RoboFragmentActivity {
     }
 
     private void eraseMyData() {
-        //TODO : call erase on server, nothing to do locally?
+        // TODO : call erase on server, wipe everything locally.
+    }
+
+    private void downloadData() {
+        // TODO: get auth token, dismiss progress dialog, open url in browser
     }
 
     private void correctTimeWindow() {
